@@ -29,7 +29,7 @@ private var now : Double {
 
 /// Define different styles of reporting
 public enum MeasurementLogStyle{
-    /// Don't measure anything
+    /// Don't print measurements, just return the values
     case none
 
     /// Log results of measurements to the console
@@ -54,7 +54,11 @@ public class Duration{
 
     /// Pops the last pushed logging style and restores the logging style to
     /// its previous style
-    public static func popLogStyle(){
+    public static func popLogStyle() {
+        guard logStyleStack.count > 0 else {
+            logStyle = .none
+            return
+        }
         logStyle = logStyleStack.removeLast()
     }
 
@@ -117,6 +121,12 @@ public class Duration{
         let endTime = now
         precondition(depth > 0, "Attempt to stop a measurement when none has been started")
 
+        guard timingStack.count > 0 else {
+            if logStyle == .print {
+                print("\(depthIndent)Empty timing stack! :(\nUnable to stop measurment and count the time elapsed.")
+            }
+            return 0
+        }
         let beginning = timingStack.removeLast()
 
         depth -= 1
