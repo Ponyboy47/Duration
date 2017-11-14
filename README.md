@@ -16,8 +16,9 @@ Duration supports iOS, OS X, tvOS, and Linux.
 
 Add the following to your Package.swift
 ```swift
-	.Package(url: "https://github.com/Ponyboy47/Duration.git", majorVersion: 2)
+	.package(url: "https://github.com/Ponyboy47/Duration.git", .upToNextMajor(from: "3.1.0")
 ```
+For Swift 3 use version 2.0.2
 
 ### Simple Measurements
 
