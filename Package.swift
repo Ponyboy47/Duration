@@ -1,3 +1,5 @@
+// swift-tools-version:4.0
+
 //    Copyright 2016 Swift Studies
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,5 +17,17 @@
 import PackageDescription
 
 let package = Package(
-	name : "Duration"
+	name : "Duration",
+    products: [
+        .library(
+            name: "Duration",
+            targets: ["Duration"]),
+    ],
+    dependencies: [
+    ],
+    targets: [
+        .target(
+            name: "Duration",
+            dependencies: []),
+    ]
 )
